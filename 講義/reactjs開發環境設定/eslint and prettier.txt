@@ -1,0 +1,49 @@
+## 步驟一：建立新的專案
+
+```
+create-react-app myapp
+```
+
+## 步驟二：安裝 VS Code 擴充
+
+安裝以下兩個 VS Code 擴充:
+
+- ESLint
+- Prettier
+
+## 步驟三：加入eslint與prettier設定檔案
+
+下載兩個 `.eslintrc` 與 `.prettierrc` 的設定檔，拷貝到專案的根目錄
+
+## 步驟四：更新 VS Code 設定
+
+請將以下的設定加到你的VSCode使用者設定之中(選單->喜好設定)：
+
+```
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "prettier.disableLanguages": ["js"],
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "files.autoSave": "onFocusChange",
+```
+
+## 步驟五：安裝模組
+
+> 乾淨的安裝一般來說是不需要安裝以下的模組，如果有出現錯誤訊息，你才需要安裝它們
+
+在終端機裡，對應專案的根目錄，輸入以下的指令(選擇其中一種即可，如果已經有安裝 yarn 建議使用上面這個):
+
+```
+yarn add eslint-plugin-prettier prettier eslint-config-react-app eslint-plugin-import eslint-plugin-react eslint-plugin-flowtype eslint-plugin-jsx-a11y
+```
+
+或
+
+```
+npm install --save-dev eslint-plugin-prettier prettier eslint-config-react-app eslint-plugin-import eslint-plugin-react eslint-plugin-flowtype eslint-plugin-jsx-a11y
+```
+
+
