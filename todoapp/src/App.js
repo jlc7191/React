@@ -1,4 +1,8 @@
 import React from 'react'
+import TodoItem from './component/TodoItem'
+import TodoInput from './component/TodoInput'
+import TodoInputTwo from './component/TodoInputTwo'
+import TodoInputThree from './component/TodoInputThree'
 
 //State是狀態
 //Props是屬性
@@ -16,6 +20,8 @@ class App extends React.Component {
   }
 
   handleChange = event => this.setState({ inputText: event.target.value })
+
+  handleChangeTwo = text => this.setState({ inputText: text })
 
   handleKeyPress = event => {
     if (event.target.value && event.key === 'Enter') {
@@ -41,20 +47,62 @@ class App extends React.Component {
     }
   }
 
+  hadleDeleteClick = id => () => {
+    const newItems = this.state.items.filter(element => {
+      return element.id !== id
+    })
+    this.setState({ items: newItems })
+  }
+
   render() {
     // value = 去抓原始狀態
     // setState 是設定State
     return (
       <>
-        <input
+        <TodoInput
           type="text"
           value={this.state.inputText}
           onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
         />
+
         <ul>
-          {this.state.items.map((element, index) => {
+          {this.state.items.map((element, index) => (
             //map有三個屬性 , 請參考mdn的map的原型
+            <TodoItem
+              key={element.id}
+              handleClickMethod={this.handleCompletedClick(element.id)}
+              handledeleteMethod={this.hadleDeleteClick(element.id)}
+              text={element.text}
+              isDel={element.isCompleted}
+            />
+          ))}
+        </ul>
+
+        {/*
+            其他寫法 
+            <TodoInput
+              type="text"
+              value={this.state.inputText}
+              onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}
+            /> 
+
+            <TodoInputTwo
+              value={this.state.inputText}
+              onChange={this.handleChangeTwo}
+              onKeyPress={this.handleKeyPress}
+            /> 
+
+            <TodoInputThree onKeyPress={this.handleKeyPress} />
+
+            <input
+              type="text"
+              value={this.state.inputText}
+              onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}
+            /> 
+
             if (element.isCompleted) {
               return (
                 <li
@@ -74,8 +122,7 @@ class App extends React.Component {
                 </li>
               )
             }
-          })}
-        </ul>
+        */}
       </>
     )
   }
