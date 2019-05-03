@@ -72,7 +72,7 @@ class App extends React.Component {
             <TodoItem
               key={element.id}
               handleClickMethod={this.handleCompletedClick(element.id)}
-              handledeleteMethod={this.hadleDeleteClick(element.id)}
+              handleDeleteMethod={this.hadleDeleteClick(element.id)}
               text={element.text}
               isDel={element.isCompleted}
             />
