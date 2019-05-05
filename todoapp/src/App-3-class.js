@@ -1,7 +1,5 @@
 import React from 'react'
 import TodoItem from './component/TodoItem'
-import TodoInput from './component/TodoInput'
-import TodoInputTwo from './component/TodoInputTwo'
 import TodoInputThree from './component/TodoInputThree'
 
 //State是狀態
@@ -23,10 +21,6 @@ class App extends React.Component {
 
   handleChangeTwo = text => this.setState({ inputText: text })
 
-  // 按下Enter就把原本State.items抓出來複製一份
-  // 並用現在時間設定一個id
-  // 然後把id跟input的值等等的資料丟進複製版array裡面
-  // 再用setState把新的複製版的蓋掉原本就的State.items
   handleKeyPress = event => {
     if (event.target.value && event.key === 'Enter') {
       const newItem = {
@@ -39,8 +33,6 @@ class App extends React.Component {
     }
   }
 
-  // 複製一份state.items出來
-  // 然後找到點擊的index, 如果index有值, 那true就會變fasle, 如果是false就會變true
   handleCompletedClick = id => () => {
     const newItems = [...this.state.items]
     const index = this.state.items.findIndex(element => {
@@ -53,9 +45,6 @@ class App extends React.Component {
     }
   }
 
-// 複製一份state.items
-// 用filter找到所有不是這個id的資料 (塞全部不是這個id的資料,就代表這個id不會被塞進去, 就等於被刪掉拉)
-// 用setState塞回去array 
   hadleDeleteClick = id => () => {
     const newItems = this.state.items.filter(element => {
       return element.id !== id
@@ -68,16 +57,11 @@ class App extends React.Component {
     // setState 是設定State
     return (
       <>
-        <TodoInput
-          type="text"
-          value={this.state.inputText}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-        />
+        <TodoInputThree onKeyPress={this.handleKeyPress} />
+
 
         <ul>
           {this.state.items.map((element, index) => (
-            //map有三個屬性 , 請參考mdn的map的原型
             <TodoItem
               key={element.id}
               handleClickMethod={this.handleCompletedClick(element.id)}
@@ -88,39 +72,11 @@ class App extends React.Component {
           ))}
         </ul>
 
-
-
-
         {/*
-            其他寫法 
-
-            <TodoInput
-              type="text"
-              value={this.state.inputText}
-              onChange={this.handleChange}
-              onKeyPress={this.handleKeyPress}
-            /> 
-
-            input元件2
-            <TodoInputTwo
-              value={this.state.inputText}
-              onChange={this.handleChangeTwo}
-              onKeyPress={this.handleKeyPress}
-            /> 
-
-            input元件3
-            <TodoInputThree onKeyPress={this.handleKeyPress} />
-
-            input拆分前寫法
-            <input
-              type="text"
-              value={this.state.inputText}
-              onChange={this.handleChange}
-              onKeyPress={this.handleKeyPress}
-            /> 
 
 
-            判斷是否完成的原版
+
+
             if (element.isCompleted) {
               return (
                 <li
