@@ -1,8 +1,8 @@
 import React from 'react'
-import ToDoItem from './components/ToDoItem'
-import ToDoInput from './components/ToDoInput'
-import ToDoInputTwo from './components/ToDoInputTwo'
-import ToDoInputThree from './components/ToDoInputThree'
+import ToDoItem from './ToDoItem'
+import ToDoInput from './ToDoInput'
+import ToDoInputTwo from './ToDoInputTwo'
+import ToDoInputThree from './ToDoInputThree'
 
 class App extends React.Component {
   constructor() {

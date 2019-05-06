@@ -18,7 +18,7 @@ class App extends React.Component {
         text: event.target.value,
         completed: false,
       }
-      // push的簡寫法 ...是展開  所以這邊是說展開this.state.items , 
+      // push的簡寫法 ...是展開  所以這邊是說展開this.state.items ,
       // newItem放在最後代表要塞最後 , 塞前面就變成原本的unshift
       // 寫法完const newItems = [newItem, ...this.state.items.newItem]
       const newItems = [...this.state.items, newItem]
@@ -46,32 +46,32 @@ class App extends React.Component {
       // 最後再蓋回去state就完成了!
       this.setState({ items: newItems })
     }
-
   }
 
-
-
   render() {
-    return <>
-      <input
-        value={this.state.inputText}
-        onChange={this.handleChange}
-        onKeyPress={this.handleKeypress}
-      ></input>
-      
-      <ul>
-        {(this.state.items.map(element =>
-          element.completed ? <li
-            key={element.id}
-            onClick={this.handleClick(element.id)}
-          ><del>{element.text}</del></li>
-            : <li
-              key={element.id}
-              onClick={this.handleClick(element.id)}
-            >{element.text}</li>
-        ))}
-      </ul>
-    </>
+    return (
+      <>
+        <input
+          value={this.state.inputText}
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeypress}
+        />
+
+        <ul>
+          {this.state.items.map(element =>
+            element.completed ? (
+              <li key={element.id} onClick={this.handleClick(element.id)}>
+                <del>{element.text}</del>
+              </li>
+            ) : (
+              <li key={element.id} onClick={this.handleClick(element.id)}>
+                {element.text}
+              </li>
+            )
+          )}
+        </ul>
+      </>
+    )
   }
 }
 

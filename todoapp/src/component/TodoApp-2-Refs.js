@@ -1,6 +1,6 @@
 import React from 'react'
-import TodoItem from './component/TodoItem'
-import TodoInputTwo from './component/TodoInputTwo'
+import TodoItem from './TodoItem'
+import TodoInputTwo from './TodoInputTwo'
 
 // 這個版本是Ref版本
 // 子元件寫的input欄位的部分, 是用Ref技法後直接獨立刻JavaScript.
