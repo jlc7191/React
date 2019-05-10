@@ -1,0 +1,7 @@
+.herobg {
+    height: 50vh;
+    width: 100vw;
+    background-image:url('http://localhost:3000/images/theaterbg.jpg');
+    background-position:center;
+    background-size:cover;
+}
