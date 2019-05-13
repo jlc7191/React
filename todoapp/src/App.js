@@ -1,20 +1,24 @@
 import React from 'react'
-// import TodoApp from './component/TodoApp'
-// import ClockApp from './component2/ClockApp'
-// import CounterApp from './component2/CounterApp'
-// import BootstrapTest from './component3/BootstrapTest'
-// import StudentManager from './component4/StudentManager'
-// import StudentManager from './component5/StudentManager'
-import RouterTest from './component6/RouterTest' 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Home from './page/Home'
+import Student from './page/Student'
+import Header from './component/Header'
+import Footer from './component/Footer'
 
 class App extends React.Component {
-  render() {
-    return (
-      <>
-        <RouterTest />
-      </>
-    )
-  }
+    render() {
+        return (
+            <Router>
+                <Header />
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/student/:id" component={Student} />
+                    <Route path="/student" component={Student} />
+                </Switch>
+                <Footer />
+            </Router>
+        )
+    }
 }
 
 export default App
