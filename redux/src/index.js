@@ -1,5 +1,5 @@
-//流程如下 1.import redux 2.撰寫reducer(類似store裡的資料夾) 3.拿寫好的reducer去建立redux的store (先斬後奏的概念) 
-//執行類似react的步驟 4.撰寫render函式讓狀態改變就重新渲染頁面 5.把render叫出來當作一開始的頁面 
+//流程如下 1.import redux 2.撰寫reducer(類似store裡的資料夾) 3.拿寫好的reducer去建立redux的store (先斬後奏的概念)
+//執行類似react的步驟 4.撰寫render函式讓狀態改變就重新渲染頁面 5.把render叫出來當作一開始的頁面
 // 6.用subscribe把render跟store綁在一起這樣才會抓到狀態改變 7.用dispatch把新資料發送進store,進而觸發step4重新渲染頁面
 // step-1
 // 從redux模組中匯入createStore函式
@@ -30,6 +30,7 @@ function todos2(state = [], action) {
     }
 }
 // chrome的redux除錯要求要先全部的reducer打包在一個object裡面
+// 打包適用combineReducers (結合Reducers)
 // 這裡的todos是todos:todos的簡寫
 let todoApp = combineReducers({
     todos,
@@ -59,12 +60,12 @@ function render() {
 }
 
 // step-5
-// 第一次調用render函式,作初始呈現
+// 第一次調用render函式,作初始畫面呈現
 // init display
 render()
 
 // step-6
-// 訂閱render函式到store中 (綁定的概念)
+// 訂閱render函式到store中 (綁定store更新的概念)
 store.subscribe(render)
 
 // step-7
@@ -73,7 +74,7 @@ document.querySelector('#itemadd').addEventListener('click', () => {
     const itemText = document.querySelector('#itemtext').value
 
     // dispatch action
-    // 這邊就是itemadd這個按鈕被按下去, 就發送新的資料上去store ,然後讓第四步驟的render可以抓到狀態更動進而重新渲染
+    // 這邊就是itemadd這個按鈕被按下去, 就發送input裡新的資料上去store ,然後讓第四步驟的render可以抓到狀態更動進而重新渲染
     store.dispatch(addItem(itemText))
 
     //clear input
