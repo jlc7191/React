@@ -1,14 +1,14 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from '../pages/0.Home'
-import theater from '../pages/1.theater'
-import theaterpage from '../pages/1_2.theaterpage'
-import film from '../pages/2.film'
-import article from '../pages/3.article'
-import activity from '../pages/4.activity'
-import forum from '../pages/5.forum'
-import Login from '../pages/6.Login'
-import register from '../pages/7.register'
+import Home from '../pages/Home'
+import theater from '../pages/theater'
+import theaterpage from '../pages/theaterpage'
+import film from '../pages/film'
+import article from '../pages/article'
+import activity from '../pages/activity'
+import forum from '../pages/forum'
+import Login from '../pages/Login'
+import register from '../pages/register'
 
 class RouterTest extends React.Component {
     constructor() {
