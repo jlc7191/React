@@ -15,7 +15,7 @@ import {
   tr,
 } from 'react-bootstrap'
 import { FaPlus, FaPen, FaTrashAlt } from 'react-icons/fa'
-import { data } from '../data/data'
+import { data } from '../../data/data'
 import StudentModal from './StudentModal'
 
 class StudentManager extends React.Component {
@@ -39,30 +39,8 @@ class StudentManager extends React.Component {
   }
 
   // 從範例資料先載入
-  // componentDidMount() {
-  //   this.setState({ studentData: data })
-  // }
-
-  async componentDidMount() {
-    try {
-      const response = await fetch('http://localhost:5555/students', {
-        method: 'GET',
-        headers: new Headers({
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }),
-      })
-
-      if (!response.ok) throw new Error(response.statusText)
-
-      const jsonObject = await response.json()
-
-      console.log(jsonObject)
-      await this.setState({ studentData: jsonObject })
-    } catch (e) {
-      console.log(e)
-    } finally {
-    }
+  componentDidMount() {
+    this.setState({ studentData: data })
   }
 
   // 處理跳出視窗的關閉
@@ -93,9 +71,8 @@ class StudentManager extends React.Component {
   handleEditModalShow = id => () => {
     //用id找到該筆資料，設定到state的對應值裡去
     const item = this.state.studentData.find(item => item.id === id)
-
     // id欄位"不可以"填寫
-    // 讓跳出視窗呈現
+    // 讓跳出視窗呈現 這些參數就是設定給跳窗顯示的
     this.setState({
       id: item.id,
       name: item.name,
@@ -118,9 +95,9 @@ class StudentManager extends React.Component {
     this.setState({ [name]: value })
   }
 
-  // 對應跳出視窗的表單的儲存，儲存情況分為新增和編輯
+  // 對應跳出視窗的表單的儲存， 儲存情況分為新增和編輯
   // 可用disableIdField這個state值來判斷
-  handleModalFormInputSave = async () => {
+  handleModalFormInputSave = () => {
     // 簡單的檢查部份
     if (this.state.id < 107000) {
       alert('學號有誤!')
@@ -147,6 +124,7 @@ class StudentManager extends React.Component {
             birth: this.state.birth,
           }
         }
+        console.log(item)
         return item
       })
 
@@ -178,29 +156,10 @@ class StudentManager extends React.Component {
 
     const newData = [item, ...this.state.studentData]
 
-    try {
-      const data = item
-
-      const response = await fetch('http://localhost:5555/students', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: new Headers({
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }),
-      })
-
-      const jsonObject = await response.json()
-
-      console.log(jsonObject)
-
-      await this.setState({ studentData: newData }, () => {
-        alert('資料已成功新增!')
-        this.handleModalClose()
-      })
-    } catch (e) {
-      console.log(e)
-    }
+    this.setState({ studentData: newData }, () => {
+      alert('資料已成功新增!')
+      this.handleModalClose()
+    })
   }
 
   // 處理資料的單筆刪除
